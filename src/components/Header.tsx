@@ -8,10 +8,19 @@ function Header() {
     return (
         <header className="relative p-[6vw] z-20 w-full md:py-[2.5vw] md:px-[3vw]">
             {/* Upper Header Area */}
-            <div className="relative z-20 w-full h-full flex justify-between items-center">
+            <div className="relative z-20 w-full h-full flex justify-between items-center md:flex-start">
                 <Link href="/">
-                    <div className="text-3xl md:text-4xl font-bold">NERF</div>
+                    <div className="text-3xl md:text-4xl font-bold cursor-pointer">NERF</div>
                 </Link>
+
+                {/* PC View Header Bar */}
+                <nav className="invisible md:visible flex grow items-center justify-end mr-[1.7vw]">
+                    <div className="py-[0.1em] text-xl font-medium">Work</div>
+                    <div className="ml-[1.7vw] py-[0.1em] text-xl font-medium">Contact</div>
+                </nav>
+                <div className="invisible md:visible flex items-center justify-end">
+                    <BsInstagram size={18} />
+                </div>
 
                 {/* Mobile Sidebar Menu Icon (Burger Box) */}
                 <button className="w-[35px] h-[35px] relative flex flex-col justify-center items-center px-[6px] box-content md:hidden">
