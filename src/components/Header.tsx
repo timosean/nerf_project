@@ -30,16 +30,43 @@ function Header() {
             <div
                 className={`${
                     showMenu ? 'opacity-100 visible' : 'opacity-0 invisible'
-                } z-10 pt-[5.236rem] absolute top-0 left-0 transition-all w-full h-full bg-white flex flex-col justify-start items-center md:hidden`}
+                } z-10 fixed inset-0 text-[1.2rem] transition-all duration-[600ms] ease-in-out bg-white flex flex-col justify-start items-center md:hidden`}
             >
-                <nav className="text-ourBlack w-full grow-1 shrink-0 flex flex-col items-center justify-center px-[3vw]">
-                    <div className={`text-[8.5vmin] font-normal my-[3vw] mx-[5vw] transition-all ${showMenu ? 'opacity-100' : 'opacity-0'}`}>Work</div>
-                    <div className={`text-[8.5vmin] font-normal my-[3vw] mx-[5vw] transition-all ${showMenu ? 'opacity-100' : 'opacity-0'}`}>Contact</div>
-                </nav>
-                <div className="w-full grow-0 shrink-1 flex items-center justify-center mb-[6vw] mx-[20px]">
-                    <div className="mx-[7.5px] my-[15px]">
-                        <BsInstagram />
-                    </div>
+                <div className="absolute inset-0 bg-white"></div>
+                <div className="relative flex flex-col grow-1 shrink-0 w-full">
+                    <nav className="relative block text-ourBlack w-full grow-1">
+                        <div
+                            className={`absolute top-0 left-0 w-full min-h-screen flex flex-col justify-start items-center overflow-y-scroll overflow-x-hidden transition-all ${
+                                showMenu ? 'translate-y-0' : 'translate-y-[40px]'
+                            }`}
+                        >
+                            <div className="relative flex flex-col w-full grow shrink-0 justify-center items-center mt-10">
+                                <div
+                                    className={`text-[9vmin] font-medium my-[4vw] mx-[5vw] transition-all duration-[250ms] ease-in-out px-[3vw] flex justify-center items-center ${
+                                        showMenu ? 'opacity-100' : 'opacity-0'
+                                    }`}
+                                >
+                                    Work
+                                </div>
+                                <div
+                                    className={`text-[9vmin] font-medium my-[4vw] mx-[5vw] transition-all duration-[250ms] ease-in-out px-[3vw] flex justify-center items-center ${
+                                        showMenu ? 'opacity-100' : 'opacity-0'
+                                    }`}
+                                >
+                                    Contact
+                                </div>
+                            </div>
+                            <div
+                                className={`max-w-full w-full box-border grow-0 shrink flex items-center justify-center mb-[6vw] mx-[20px] transition-all duration-[600ms] ease-in-out ${
+                                    showMenu ? 'translate-y-0' : 'translate-y-[20px]'
+                                }`}
+                            >
+                                <div className="box-border w-full mx-[7.5px] my-[15px] flex justify-center">
+                                    <BsInstagram size={24} />
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
             </div>
         </header>
