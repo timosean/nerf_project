@@ -20,11 +20,11 @@ function PlaceList({}) {
                 <Link href={'/'} >
                     <div key ={`${idx}. ${place}`} className='relative' onMouseOver={() => setIsHover(idx)} onMouseOut={() => setIsHover(100)}>
                         <img src="/img_example.jpg" className={`${isHover == idx ? `opacity-30` : `opacity-100`} transition duration-1000`} alt={`${place}`} />
-                        <a className={`${isHover == idx ? 'opacity-100 visible' : 'opacity-0 invisible'} transition duration-1000 text-lg font-[700] bottom-14 mx-6 z-20 absolute`} >{place}</a>
-                        <div className={`${isHover == idx ? 'opacity-100 visible' : 'opacity-0 invisible'} transition duration-1000 absolute z-20 bottom-6 mx-6`}>
-                            {exampleColors.map((color, idx) => (
+                        <a className={`${isHover == idx ? 'opacity-100 visible translate-x-6' : 'opacity-0'} transition duration-1000 text-lg font-[700] bottom-14 z-20 absolute`} >{place}</a>
+                        <div className={`${isHover == idx ? 'opacity-100 visible translate-x-6' : 'opacity-0'} transition duration-1000 absolute z-20 bottom-6`}>
+                            {exampleColors.map((color, idx2) => (
                                 // <div className={`bg-[${color}] w-6 h-6 inline-flex`}></div>
-                                <div key={`${place}. ${color}`} className="w-6 h-6 inline-flex" style={{backgroundColor: `${color}`}}></div>
+                                <div key={`${color} ${idx2}`} className="w-6 h-6 inline-flex" style={{backgroundColor: `${color}`}}></div>
                             ))}
                         </div>
                     </div>
