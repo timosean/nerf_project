@@ -1,16 +1,15 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
+import PlaceList from '../components/PlaceList';
 
 const Home: NextPage = () => {
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center py-2">
+        <div>
             <Head>
                 <title>NERF</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
-            <div>Start</div>
+            <PlaceList></PlaceList>
         </div>
     );
 };
