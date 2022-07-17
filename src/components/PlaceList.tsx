@@ -13,7 +13,7 @@ function PlaceList({}) {
             {placeArr.map((place, idx) => (
                 <Link href={`/place/${place}`}>
                     <div key={`${idx}. ${place}`} className="relative cursor-pointer" onMouseOver={() => setIsHover(idx)} onMouseOut={() => setIsHover(100)}>
-                        <img src="/img_example.jpg" className={`${isHover == idx ? `opacity-30` : `opacity-100`} transition duration-1000`} alt={`${place}`} />
+                        <img src="/img_example.jpg" className={`${isHover == idx ? `opacity-80` : `opacity-100`} transition duration-1000`} alt={`${place}`} />
                         <a className={`${isHover == idx ? 'opacity-100 visible translate-x-6' : 'opacity-0'} transition duration-1000 text-lg font-[700] bottom-14 z-20 absolute`}>{place}</a>
                         <div className={`${isHover == idx ? 'opacity-100 visible translate-x-6' : 'opacity-0'} transition duration-1000 absolute z-20 bottom-6 flex space-x-4`}>
                             {exampleColors.map((color, idx2) => (
