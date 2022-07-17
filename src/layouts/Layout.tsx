@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Header from '../components/Header';
-import PlaceList from '../components/PlaceList';
+import PlaceList from '../constants/PlaceList';
 
 type AppLayoutProps = {
     children: React.ReactNode;
