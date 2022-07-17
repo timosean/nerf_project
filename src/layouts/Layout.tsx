@@ -13,7 +13,7 @@ function Layout({ children }: AppLayoutProps) {
             </Head>
             <Header />
 
-            <div>{children}</div>
+            <div className="px-[6vw] md:px-[3vw]">{children}</div>
         </div>
     );
 }
