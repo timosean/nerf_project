@@ -27,9 +27,11 @@ function Place() {
     }
     
     return (
-        <section className="w-full h-[calc(100vh-5vw-2.5rem)]">
-            <PalleteSlider colorList3={data.colorList3} colorList4={data.colorList4} colorList5={data.colorList5}></PalleteSlider>
-        </section>
+        <div>
+            <section className="w-full h-[calc(100vh-5vw-2.5rem)]">
+                <PalleteSlider colorList3={data.colorList3} colorList4={data.colorList4} colorList5={data.colorList5}></PalleteSlider>
+            </section>
+        </div>
     );
 }
 

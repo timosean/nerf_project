@@ -7,31 +7,35 @@ interface PalleteProps {
 
 function Pallete({colorList}: PalleteProps) {
     // 커서 올렸을 때, opacity
-    const [isHoover, setIsHoover] = useState(100);
+    const [isHover3, setIsHover3] = useState(100);
+    const [isHover4, setIsHover4] = useState(100);
+    const [isHover5, setIsHover5] = useState(100);
     // 배열 길이가 9, 16, 25냐에 따라 다름
     const cnt: number = Math.sqrt(colorList.length);
 
+    // 높이 일단 맞춰보긴 했는데 차이 많이나면 height 잡아준다음에 중앙으로 맞춰주는게 나을듯.
+    // 페이드 방식으로 바꾸면 호버링 판정이 5x5 팔레트일때만 들어간다... 현재 탭을 확인해서 z-index를 걸어줘야하는건가...
     if(cnt == 3) {
         return(
-            <div className="grid grid-cols-3 gap-3 flex justify-items-center px-[16.6%]">
+            <div className="grid grid-cols-3 gap-4 flex justify-items-center w-[27rem] sm:w-[33rem] md:w-[38rem] mx-[auto]">
                 {colorList.map((color, idx) => (
-                    <div className={`${isHoover == idx ? 'opacity-30' : 'opacity-100'} transition duration-1000 w-[20vh] pb-[20vh]`} style={{backgroundColor: `${color}`}} onMouseOver={() => setIsHoover(idx)} onMouseOut={() => setIsHoover(100)}></div>
+                    <div className={`${isHover3 == idx ? 'opacity-30' : 'opacity-100'} transition duration-1000 w-[8rem] pb-[8rem] sm:w-[10rem] sm:h-[10rem] md:w-[12rem] md:pb-[12rem]`} style={{backgroundColor: `${color}`}} onMouseOver={() => setIsHover3(idx)} onMouseOut={() => setIsHover3(100)}>{isHover3}</div>
                 ))}
             </div>
         );
     } else if(cnt == 4) {
         return(
-            <div className="grid grid-cols-4 gap-3 flex justify-items-center px-[16.6%]">
+            <div className="grid grid-cols-4 gap-3 flex justify-items-center w-[27rem] sm:w-[33rem] md:w-[38rem] mx-[auto]">
                 {colorList.map((color, idx) => (
-                    <div className={`${isHoover == idx ? 'opacity-30' : 'opacity-100'} transition duration-1000 w-[15vh] pb-[15vh]`} style={{backgroundColor: `${color}`}} onMouseOver={() => setIsHoover(idx)} onMouseOut={() => setIsHoover(100)}></div>
+                    <div className={`${isHover4 == idx ? 'opacity-30' : 'opacity-100'} transition duration-1000 w-[6rem] pb-[6rem] sm:w-[7.5rem] sm:h-[7.5rem] md:w-[9rem] md:pb-[9rem]`} style={{backgroundColor: `${color}`}} onMouseOver={() => setIsHover4(idx)} onMouseOut={() => setIsHover4(100)}>{isHover4}</div>
                 ))}
             </div>
         );
     } else {
         return(
-            <div className="grid grid-cols-5 gap-2 flex justify-items-center px-[16.6%]">
+            <div className="grid grid-cols-5 gap-2 flex justify-items-center w-[27rem] sm:w-[33rem] md:w-[38rem] mx-[auto]">
                 {colorList.map((color, idx) => (
-                    <div className={`${isHoover == idx ? 'opacity-30' : 'opacity-100'} transition duration-1000 w-[12vh] pb-[12vh]`} style={{backgroundColor: `${color}`}} onMouseOver={() => setIsHoover(idx)} onMouseOut={() => setIsHoover(100)}></div>
+                    <div className={`${isHover5 == idx ? 'opacity-30' : 'opacity-100'} transition duration-1000 w-[4.8rem] pb-[4.8rem] sm:w-[6rem] sm:h-[6rem] md:w-[7.2rem] md:pb-[7.2rem]`} style={{backgroundColor: `${color}`}} onMouseOver={() => setIsHover5(idx)} onMouseOut={() => setIsHover5(100)}>{isHover5}</div>
                 ))}
             </div>
         );
