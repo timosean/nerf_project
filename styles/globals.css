@@ -48,9 +48,9 @@
     }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 639px) {
     .white-arrow {
-        width: calc((100% - 27rem)/2) !important;
+        width: calc((100% - 17rem)/2) !important;
         height: 100% !important;
         background-color: white !important;
         z-index: 2;

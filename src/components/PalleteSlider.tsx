@@ -43,7 +43,7 @@ function PalleteSlider({colorList3, colorList4, colorList5}: SliderProps) {
     }
 
     return (
-        <div className="flex justify-center flex-row" style={{minWidth: "550px"}}>
+        <div className="flex justify-center flex-row" style={{minWidth: "360px"}}>
             <Slider className="flex flex-row h-full w-full" {...settings}>
                 <div className="">
                     <Pallete colorList={colorList3}></Pallete>
