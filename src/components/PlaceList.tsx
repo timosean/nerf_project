@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import { DefaultDeserializer } from 'v8';
 import dataList from '../dataList';
 
 function PlaceList({}) {
@@ -14,7 +15,7 @@ function PlaceList({}) {
     return (
         <div className="relative grid gap-3 grid-cols-1 py-[3vw] md:grid-cols-2 px-[0.000001px]">
             {dataList.map((data, idx) => (
-                <Link href={`/place/${data.name}`}>
+                <Link href={`/place/${data.name}`} key={data.name}>
                     <div key={`${idx}. ${data.place}`} className="relative cursor-pointer flex justify-center items-center" onMouseOver={() => setIsHover(idx)} onMouseOut={() => setIsHover(100)}>
                         <img src={`${imagesrc[idx % 3]}`} className={`${isHover == idx ? `opacity-80` : `opacity-100`} w-full transition duration-1000`} alt={`${data.place}`} />
                         <a className={`${isHover == idx ? 'opacity-100 visible' : 'opacity-0'} transition duration-1000 text-3xl lg:text-5xl xl:text-6xl font-[700] z-20 absolute`}>{data.place}</a>
