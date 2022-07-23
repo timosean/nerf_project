@@ -1,6 +1,13 @@
 import { atom } from 'recoil';
 
-export const colorState = atom({
+const colorState = atom({
     key: 'colorState',
-    default: '',
+    default: '#FFFFFF',
 });
+
+const modalState = atom({
+    key: 'modalState',
+    default: false,
+});
+
+export { colorState, modalState };

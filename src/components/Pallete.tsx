@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import ColorModal from './ColorModal';
+import { useRecoilState } from 'recoil';
+import { colorState, modalState } from '../states/index';
 
 // 컬러코드가 담겨있는 배열 ex) colorList3, colorList4, colorList5
 interface PalleteProps {
@@ -28,8 +29,8 @@ function Pallete({ colorList }: PalleteProps) {
     // 배열 길이가 9, 16, 25냐에 따라 다름
     const cnt: number = Math.sqrt(colorList.length);
 
-    const [modal, setModal] = useState(false);
-    const [color, setColor] = useState('#FFFFFF');
+    const [modal, setModal] = useRecoilState(modalState);
+    const [color, setColor] = useRecoilState(colorState);
 
     return cnt == 3 ? (
         <div className="grid grid-cols-3 gap-2 sm:gap-4 flex justify-items-center w-[17rem] sm:w-[33rem] md:w-[38rem] mx-[auto]">

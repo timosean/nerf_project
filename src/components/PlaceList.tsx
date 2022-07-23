@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { DefaultDeserializer } from 'v8';
-import dataList from '../dataList';
+import dataList from '../constants/dataList';
 
 function PlaceList({}) {
     const [isHover, setIsHover] = useState(100);
