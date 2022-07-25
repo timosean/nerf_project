@@ -37,7 +37,7 @@ function Place() {
     return (
         <div>
             <section className="w-full h-full absolute inset-0 md:h-[calc(100vh-5vw-2.5rem)] md:static flex items-center justify-center">
-                <ColorModal color={color} isOpen={modal} />
+                <ColorModal color={color} />
                 <PalleteSlider colorList3={data.colorList3} colorList4={data.colorList4} colorList5={data.colorList5}></PalleteSlider>
             </section>
         </div>
