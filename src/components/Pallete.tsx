@@ -73,6 +73,7 @@ function Pallete({ colorList }: PalleteProps) {
                     onClick={() => {
                         setModal(true);
                         setColor(color);
+                        onModalOpen();
                     }}
                 >
                     <span

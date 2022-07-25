@@ -23,14 +23,15 @@ function ColorModal({ color }: { color: string }) {
         <>
             <div
                 className={`opacity-0 top-full transition-opacity duration-500 backdrop-blur absolute left-0 right-0 bg-[rgba(100,100,100,0.7)] z-30 px-[6vw] md:px-[3vw]`}
-                onClick={onModalClose}
+                onClick={() => {
+                    onModalClose();
+                    setModal(false);
+                }}
                 id="modal-background"
             ></div>
             <div
                 id="modal"
-                className={`${
-                    modal ? 'opacity-100 -translate-y-[50%]' : 'opacity-0 -translate-y-[1000%]'
-                } transition-opacity duration-500 absolute top-[55%] left-[50%] -translate-x-[50%] flex flex-col w-5/6 lg:w-4/6 h-[43rem] bg-[rgba(229,231,235,0.4)] backdrop-blur-3xl p-8 rounded-xl z-40`}
+                className={`opacity-0 -translate-y-[1000%] transition-opacity duration-500 absolute top-[55%] left-[50%] -translate-x-[50%] flex flex-col w-5/6 lg:w-4/6 h-[43rem] bg-[rgba(229,231,235,0.4)] backdrop-blur-3xl p-8 rounded-xl z-40`}
             >
                 <h1 className="text-xl font-bold mb-6">{color}</h1>
                 <p className="overflow-auto">
