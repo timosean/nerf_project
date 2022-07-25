@@ -11,6 +11,18 @@ function Pallete({ colorList }: PalleteProps) {
     const WHITE = 'FFFFFF';
     const BLACK = '000000';
 
+    function onModalOpen() {
+        const modalBackground = document.querySelector('#modal-background') as HTMLDivElement;
+        const modal = document.querySelector('#modal') as HTMLDivElement;
+
+        modalBackground.classList.replace('opacity-0', 'opacity-100');
+        modalBackground.classList.remove('top-full');
+        modalBackground.classList.add('top-0', 'bottom-0');
+
+        modal.classList.replace('opacity-0', 'opacity-100');
+        modal.classList.replace('-translate-y-[1000%]', '-translate-y-[50%]');
+    }
+
     function colorDetermine(color: string) {
         const hexvalue = color.substring(1);
         const black_value = parseInt(BLACK, 16);
@@ -43,6 +55,7 @@ function Pallete({ colorList }: PalleteProps) {
                     onClick={() => {
                         setModal(true);
                         setColor(color);
+                        onModalOpen();
                     }}
                 >
                     <span className={`transition-all duration-700 ease-out text-sm md:text-lg lg:text-xl font-normal text-white ${isHover == idx ? 'opacity-100' : 'opacity-0'}`}>{color}</span>
@@ -60,6 +73,7 @@ function Pallete({ colorList }: PalleteProps) {
                     onClick={() => {
                         setModal(true);
                         setColor(color);
+                        onModalOpen();
                     }}
                 >
                     <span
