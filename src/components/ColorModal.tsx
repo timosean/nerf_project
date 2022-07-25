@@ -16,7 +16,7 @@ function ColorModal({ color }: { color: string }) {
             modalBackground.classList.remove('top-0', 'bottom-0');
             modalBackground.classList.add('top-full');
             modal.classList.replace('-translate-y-[50%]', '-translate-y-[1000%]');
-        }, 1000);
+        }, 450);
     }
 
     return (
