@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dataList from '../constants/dataList';
+import { useSpring, animated } from 'react-spring';
 
 function PlaceList({}) {
     const [isHover, setIsHover] = useState(100);
@@ -11,8 +12,10 @@ function PlaceList({}) {
         'https://images.squarespace-cdn.com/content/v1/624b3c6dd142742980614c6d/1649097839206-B2JN16E5EJCWFKE19NWS/novel-final.jpg',
     ];
 
+    const props = useSpring({ from: { opacity: 0 }, to: { opacity: 1 }, delay: 0 });
+
     return (
-        <div className="relative grid gap-3 grid-cols-1 py-[3vw] md:grid-cols-2 px-[0.000001px]">
+        <animated.div className="relative grid gap-3 grid-cols-1 py-[3vw] md:grid-cols-2 px-[0.000001px] duration-700" style={props}>
             {dataList.map((data, idx) => (
                 <Link href={`/place/${data.place}`} key={data.name}>
                     <div key={`${idx}. ${data.place}`} className="relative cursor-pointer flex justify-center items-center" onMouseOver={() => setIsHover(idx)} onMouseOut={() => setIsHover(100)}>
@@ -30,7 +33,7 @@ function PlaceList({}) {
                     </div>
                 </Link>
             ))}
-        </div>
+        </animated.div>
     );
 }
 

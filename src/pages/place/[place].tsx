@@ -72,7 +72,7 @@ function Place() {
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <section className="w-full h-full md:h-[calc(100vh-5vw-2.5rem)] opacity-0 duration-1000" id="intro-section">
+            <section className="w-full h-full md:h-[calc(100vh-5vw-2.5rem)] opacity-0 duration-[2400ms]" id="intro-section">
                 <Introduce placename={place?.toString()} />
             </section>
             <section className="w-full h-full md:h-[100vh] mt-24 md:static flex items-center justify-center">
