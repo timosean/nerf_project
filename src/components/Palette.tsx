@@ -11,6 +11,7 @@ function Pallete({ colorList }: PalleteProps) {
     const WHITE = 'FFFFFF';
     const BLACK = '000000';
 
+    //모달 창 Open에 대한 효과 주기
     function onModalOpen() {
         const modalBackground = document.querySelector('#modal-background') as HTMLDivElement;
         const modal = document.querySelector('#modal') as HTMLDivElement;
@@ -23,6 +24,7 @@ function Pallete({ colorList }: PalleteProps) {
         modal.classList.replace('-translate-y-[1000%]', '-translate-y-[50%]');
     }
 
+    //배경색에 따라서 흰색,검은색 중 텍스트가 더 잘 보이는 색깔 정하기
     function colorDetermine(color: string) {
         const hexvalue = color.substring(1);
         const black_value = parseInt(BLACK, 16);
@@ -36,9 +38,10 @@ function Pallete({ colorList }: PalleteProps) {
         } else return 'black';
     }
 
-    // 커서 올렸을 때, opacity
+    // 컬러 위에 커서 올렸을 때, opacity 설정
     const [isHover, setIsHover] = useState(100);
-    // 배열 길이가 9, 16, 25냐에 따라 다름
+
+    // colorList.length에 따라서 3x3, 4x4, 5x5 팔레트 중 무엇을 보여줄 지 결정
     const cnt: number = Math.sqrt(colorList.length);
 
     const [modal, setModal] = useRecoilState(modalState);
@@ -52,6 +55,7 @@ function Pallete({ colorList }: PalleteProps) {
                     style={{ backgroundColor: `${color}` }}
                     onMouseOver={() => setIsHover(idx)}
                     onMouseOut={() => setIsHover(100)}
+                    key={`${color}.${idx}`}
                     onClick={() => {
                         setModal(true);
                         setColor(color);
@@ -70,6 +74,7 @@ function Pallete({ colorList }: PalleteProps) {
                     style={{ backgroundColor: `${color}` }}
                     onMouseOver={() => setIsHover(idx)}
                     onMouseOut={() => setIsHover(100)}
+                    key={`${color}.${idx}`}
                     onClick={() => {
                         setModal(true);
                         setColor(color);
@@ -92,6 +97,7 @@ function Pallete({ colorList }: PalleteProps) {
                     style={{ backgroundColor: `${color}` }}
                     onMouseOver={() => setIsHover(idx)}
                     onMouseOut={() => setIsHover(100)}
+                    key={`${color}.${idx}`}
                 ></div>
             ))}
         </div>

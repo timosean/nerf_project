@@ -19,7 +19,7 @@ function PlaceList({}) {
             {dataList.map((data, idx) => (
                 <Link href={`/place/${data.place}`} key={data.name}>
                     <div key={`${idx}. ${data.place}`} className="relative cursor-pointer flex justify-center items-center" onMouseOver={() => setIsHover(idx)} onMouseOut={() => setIsHover(100)}>
-                        <img src={`${imagesrc[idx % 3]}`} className={`${isHover == idx ? `opacity-80` : `opacity-100`} w-full h-[500px] transition duration-1000`} alt={`${data.place}`} />
+                        <img src={`${imagesrc[idx % 3]}`} className={`${isHover == idx ? `opacity-80` : `opacity-100`} w-full h-full transition duration-1000`} alt={`${data.place}`} />
                         <a className={`${isHover == idx ? 'opacity-100 visible' : 'opacity-0'} transition duration-1000 text-3xl lg:text-5xl xl:text-6xl font-[700] z-20 absolute`}>{data.place}</a>
                         <div
                             className={`${

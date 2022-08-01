@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Slider from 'react-slick';
-import Pallete from './Pallete';
+import Palette from './Palette';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -28,9 +28,8 @@ function CustomPrevArrows({ className, style, onClick }: CustomArrowsProps) {
 
 // 캐러셀
 function PalleteSlider({ colorList3, colorList4, colorList5 }: SliderProps) {
-    //slick opacity 조절해주려면 css 건드려야할 것 같은데 잘 모르겠당 ㅎ;
     const settings = {
-        fade: true,
+        fade: false,
         infinite: true,
         speed: 1500,
         slidesToShow: 1,
@@ -40,17 +39,11 @@ function PalleteSlider({ colorList3, colorList4, colorList5 }: SliderProps) {
     };
 
     return (
-        <div className="flex justify-center flex-row mt-10" style={{ minWidth: '360px' }}>
+        <div className="flex justify-center flex-row items-center" style={{ minWidth: '360px' }}>
             <Slider className="flex flex-row h-full w-full" {...settings}>
-                <div className="">
-                    <Pallete colorList={colorList3}></Pallete>
-                </div>
-                <div className="">
-                    <Pallete colorList={colorList4}></Pallete>
-                </div>
-                <div className="">
-                    <Pallete colorList={colorList5}></Pallete>
-                </div>
+                <Palette colorList={colorList3}></Palette>
+                <Palette colorList={colorList4}></Palette>
+                <Palette colorList={colorList5}></Palette>
             </Slider>
         </div>
     );

@@ -18,11 +18,10 @@ interface DataType {
 
 function ColorSample({ placename }: { placename?: string }) {
     const placeColorData = dataList.find(elem => elem.place == placename)?.colorList3;
-    console.log(placeColorData);
     return (
         <div className="w-full flex space-x-0 justify-center">
             {placeColorData?.map(color => (
-                <div className={`w-5 h-5`} style={{ backgroundColor: `${color}` }}></div>
+                <div className={`w-5 h-5`} style={{ backgroundColor: `${color}` }} key={color}></div>
             ))}
         </div>
     );
@@ -34,7 +33,7 @@ function Introduce({ placename }: { placename?: string }) {
             <h1 className="font-lexend relative text-6xl w-full text-center mb-20">{placename}</h1>
             <ColorSample placename={placename} />
             <div className="flex justify-center mt-20">
-                <article className="w-2/12 font-NotoSerifKR">
+                <article className="w-4/12 lg:w-2/12 font-NotoSerifKR text-sm lg:text-base">
                     용산 미군기지는 엄청 좋아 개꿀 나이따 용산 미군기지는 엄청 좋아 개꿀 나이따 용산 미군기지는 엄청 좋아 개꿀 나이따 용산 미군기지는 엄청 좋아 개꿀 나이따
                 </article>
             </div>
@@ -51,11 +50,33 @@ function Place() {
     useEffect(() => {
         function introFadeIn() {
             const introSection = document.querySelector('#intro-section') as HTMLElement;
-            introSection.classList.replace('opacity-0', 'opacity-100');
+            introSection?.classList.replace('opacity-0', 'opacity-100');
         }
 
         introFadeIn();
     }, []);
+
+    useEffect(() => {
+        const placeWrapper = document.querySelector('#place-wrapper') as HTMLDivElement;
+        placeWrapper?.addEventListener(
+            'wheel',
+            function (e) {
+                e.preventDefault();
+
+                const paletteWrapper = document.querySelector('#palette-wrapper') as HTMLElement;
+
+                //스크롤을 아래로 내리면 팔레트가 올라오고, 위로 올리면 팔레트가 내려간다.
+                if (e.deltaY > 0) {
+                    paletteWrapper?.classList.replace('top-[calc(100vh)]', 'lg:top-[calc(2.5rem)]');
+                    paletteWrapper?.classList.add('top-0');
+                } else {
+                    paletteWrapper?.classList.replace('lg:top-[calc(2.5rem)]', 'top-[calc(100vh)]');
+                    paletteWrapper?.classList.remove('top-0');
+                }
+            },
+            { passive: false },
+        );
+    });
 
     // dataList 배열에서 이름 검사하는 함수
     const isPlace = (element: DataType) => {
@@ -71,12 +92,12 @@ function Place() {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center" id="place-wrapper">
+            <ColorModal color={color} />
             <section className="w-full h-full md:h-[calc(100vh-5vw-2.5rem)] opacity-0 duration-[2400ms]" id="intro-section">
                 <Introduce placename={place?.toString()} />
             </section>
-            <section className="w-full h-full md:h-[100vh] mt-24 md:static flex items-center justify-center">
-                <ColorModal color={color} />
+            <section className="w-full h-[100vh] h-[calc(100vh-5vw-2.5rem)] absolute top-[calc(100vh)] bg-white flex items-center justify-center transition-all duration-1000" id="palette-wrapper">
                 <PalleteSlider colorList3={data.colorList3} colorList4={data.colorList4} colorList5={data.colorList5}></PalleteSlider>
             </section>
         </div>
