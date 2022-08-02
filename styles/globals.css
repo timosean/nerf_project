@@ -1,4 +1,5 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100&family=Noto+Serif+KR:wght@200;300&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -33,7 +34,7 @@
 }
 
 .white-arrow {
-    width: calc((100% - 38rem)/2) !important;
+    width: calc((100% - 38rem) / 2) !important;
     height: 100% !important;
     background-color: white !important;
     z-index: 2;
@@ -41,7 +42,7 @@
 
 @media screen and (max-width: 768) {
     .white-arrow {
-        width: calc((100% - 33rem)/2) !important;
+        width: calc((100% - 33rem) / 2) !important;
         height: 100% !important;
         background-color: white !important;
         z-index: 2;
@@ -50,7 +51,7 @@
 
 @media screen and (max-width: 639px) {
     .white-arrow {
-        width: calc((100% - 17rem)/2) !important;
+        width: calc((100% - 17rem) / 2) !important;
         height: 100% !important;
         background-color: white !important;
         z-index: 2;
