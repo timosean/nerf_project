@@ -51,7 +51,7 @@ function Pallete({ colorList }: PalleteProps) {
         <div className="grid grid-cols-3 gap-2 sm:gap-4 flex justify-items-center w-[17rem] sm:w-[33rem] md:w-[38rem] mx-[auto]">
             {colorList.map((color, idx) => (
                 <div
-                    className={`w-[5.3rem] h-[5.3rem] sm:w-[10.3rem] sm:h-[10.3rem] md:w-[12rem] md:h-[12rem] flex items-end px-1.5 py-1 md:p-2 cursor-pointer`}
+                    className={`w-[5.3rem] h-[5.3rem] sm:w-[10.3rem] sm:h-[10.3rem] md:w-[12rem] md:h-[12rem] flex items-end p-1 sm:p-1.5 md:p-2 cursor-pointer`}
                     style={{ backgroundColor: `${color}` }}
                     onMouseOver={() => setIsHover(idx)}
                     onMouseOut={() => setIsHover(100)}
@@ -62,7 +62,7 @@ function Pallete({ colorList }: PalleteProps) {
                         onModalOpen();
                     }}
                 >
-                    <span className={`transition-all duration-700 ease-out text-sm md:text-lg lg:text-xl font-normal text-white ${isHover == idx ? 'opacity-100' : 'opacity-0'}`}>{color}</span>
+                    <span className={`transition-all duration-700 ease-out text-[0.875rem] md:text-[1.125rem] lg:text-[1.25rem] font-normal leading-none text-white ${isHover == idx ? 'opacity-100' : 'opacity-0'}`}>{color}</span>
                 </div>
             ))}
         </div>
@@ -70,7 +70,7 @@ function Pallete({ colorList }: PalleteProps) {
         <div className="grid grid-cols-4 gap-1.5 sm:gap-3 flex justify-items-center w-[17rem] sm:w-[33rem] md:w-[38rem] mx-[auto]">
             {colorList.map((color, idx) => (
                 <div
-                    className={`w-[4rem] h-[4rem] sm:w-[7.5rem] sm:h-[7.5rem] md:w-[9rem] md:h-[9rem] flex items-end px-1.5 py-[0.05rem] md:p-2 cursor-pointer`}
+                    className={`w-[4rem] h-[4rem] sm:w-[7.5rem] sm:h-[7.5rem] md:w-[9rem] md:h-[9rem] flex items-end p-1 sm:p-1.5 md:p-2 cursor-pointer`}
                     style={{ backgroundColor: `${color}` }}
                     onMouseOver={() => setIsHover(idx)}
                     onMouseOut={() => setIsHover(100)}
@@ -82,7 +82,7 @@ function Pallete({ colorList }: PalleteProps) {
                     }}
                 >
                     <span
-                        className={`transition-all duration-700 ease-out text-[0.5rem] md:text-lg lg:text-lg font-normal text-${colorDetermine(color)} ${isHover == idx ? 'opacity-100' : 'opacity-0'}`}
+                        className={`transition-all duration-700 ease-out text-[0.5rem] md:text-[1.125rem] lg:text-[1.125rem] font-normal leading-none text-${colorDetermine(color)} ${isHover == idx ? 'opacity-100' : 'opacity-0'}`}
                     >
                         {color}
                     </span>
