@@ -10,7 +10,7 @@ function Header() {
             {/* Upper Header Area */}
             <div className="relative z-20 w-full h-full flex justify-between items-center md:flex-start">
                 <Link href="/">
-                    <div className="text-3xl md:text-4xl font-bold cursor-pointer">NERF</div>
+                    <div className="text-3xl md:text-4xl font-bold cursor-pointer font-evoregular tracking-widest">NERF</div>
                 </Link>
 
                 {/* PC View Header Bar */}

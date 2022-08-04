@@ -6,6 +6,8 @@ module.exports = {
             fontFamily: {
                 NotoSerifKR: ['Noto Serif KR', 'serif'],
                 lexend: ['lexend', 'sans-serif'],
+                evomedium: ['EVOMEDIUM', 'sans-serif'],
+                evoregular: ['EVOREGULAR', 'sans-serif'],
             },
             colors: {
                 ourBlack: '#1D1D1D',

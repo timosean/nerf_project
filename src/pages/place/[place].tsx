@@ -5,6 +5,7 @@ import { modalState, colorState } from '../../states/index';
 import { useRecoilState } from 'recoil';
 import ColorModal from '../../components/ColorModal';
 import { useEffect } from 'react';
+import { BsChevronDown } from 'react-icons/bs';
 
 //원래 높이는 h-[calc(100vh-5vw-2.5rem)] 이거였음.
 
@@ -29,13 +30,16 @@ function ColorSample({ placename }: { placename?: string }) {
 
 function Introduce({ placename }: { placename?: string }) {
     return (
-        <div className="w-full h-full md:h-48 pt-32">
+        <div className="relative w-full h-full md:h-48 pt-32">
             <h1 className="font-lexend relative text-6xl w-full text-center mb-20">{placename}</h1>
             <ColorSample placename={placename} />
             <div className="flex justify-center mt-20">
                 <article className="w-4/12 lg:w-2/12 font-NotoSerifKR text-sm lg:text-base">
                     용산 미군기지는 엄청 좋아 개꿀 나이따 용산 미군기지는 엄청 좋아 개꿀 나이따 용산 미군기지는 엄청 좋아 개꿀 나이따 용산 미군기지는 엄청 좋아 개꿀 나이따
                 </article>
+            </div>
+            <div className="flex items-center justify-center mt-[10vh] animate-bounce">
+                <BsChevronDown size={20} />
             </div>
         </div>
     );
