@@ -5,6 +5,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'EVOMEDIUM';
+    src: url(../src/fonts/MADE\ EVOLVE\ SANS\ MEDIUM\ EVO.otf);
+}
+
+@font-face {
+    font-family: 'EVOREGULAR';
+    src: url(../src/fonts/MADE\ EVOLVE\ SANS\ REGULAR\ EVO.otf);
+}
+
 @layer base {
     * {
         @apply text-base text-ourBlack;
