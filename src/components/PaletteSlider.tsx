@@ -27,7 +27,7 @@ function CustomPrevArrows({ className, style, onClick }: CustomArrowsProps) {
 }
 
 // 캐러셀
-function PalleteSlider({ colorList3, colorList4, colorList5 }: SliderProps) {
+function PaletteSlider({ colorList3, colorList4, colorList5 }: SliderProps) {
     const settings = {
         fade: false,
         infinite: true,
@@ -49,4 +49,4 @@ function PalleteSlider({ colorList3, colorList4, colorList5 }: SliderProps) {
     );
 }
 
-export default PalleteSlider;
+export default PaletteSlider;

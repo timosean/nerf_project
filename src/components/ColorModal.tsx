@@ -1,6 +1,7 @@
 import { MdOutlineClose } from 'react-icons/md';
 import { modalState } from '../states/index';
 import { useRecoilState } from 'recoil';
+import PaletteWheelEvent from '../utils/PaletteWheelEvent';
 
 function ColorModal({ color }: { color: string }) {
     const [modal, setModal] = useRecoilState(modalState);
@@ -21,6 +22,13 @@ function ColorModal({ color }: { color: string }) {
 
         modalBackground.classList.replace('opacity-100', 'opacity-0');
         modal.classList.replace('opacity-100', 'opacity-0');
+
+        const placeWrapper = document.querySelector('#place-wrapper') as HTMLDivElement;
+        placeWrapper.addEventListener(
+            'wheel',
+            PaletteWheelEvent,
+            {passive: false}
+        );
 
         setTimeout(() => {
             modalBackground.classList.remove('top-0', 'bottom-0');

@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { colorState, modalState } from '../states/index';
+import PaletteWheelEvent from '../utils/PaletteWheelEvent';
 
 // 컬러코드가 담겨있는 배열 ex) colorList3, colorList4, colorList5
-interface PalleteProps {
+interface PaletteProps {
     colorList: string[];
 }
 
-function Pallete({ colorList }: PalleteProps) {
+function Palette({ colorList }: PaletteProps) {
     const WHITE = 'FFFFFF';
     const BLACK = '000000';
 
     //모달 창 Open에 대한 효과 주기
+    // function onModalOpen() {
+    //     const modalBackground = document.querySelector('#modal-background') as HTMLDivElement;
+    //     const modal = document.querySelector('#modal') as HTMLDivElement;
+
+    //     modalBackground.classList.replace('opacity-0', 'opacity-100');
+    //     modalBackground.classList.remove('top-full');
+    //     modalBackground.classList.add('top-0', 'bottom-0');
+
+    //     modal.classList.replace('opacity-0', 'opacity-100');
+    //     modal.classList.replace('-translate-y-[1000%]', '-translate-y-[50%]');
+    // }
+
     function onModalOpen() {
         const modalBackground = document.querySelector('#modal-background') as HTMLDivElement;
         const modal = document.querySelector('#modal') as HTMLDivElement;
@@ -22,6 +35,10 @@ function Pallete({ colorList }: PalleteProps) {
 
         modal.classList.replace('opacity-0', 'opacity-100');
         modal.classList.replace('-translate-y-[1000%]', '-translate-y-[50%]');
+
+        const placeWrapper = document.querySelector('#place-wrapper') as HTMLDivElement;
+        placeWrapper.removeEventListener('wheel', PaletteWheelEvent);
+        console.log("def");
     }
 
     //배경색에 따라서 흰색,검은색 중 텍스트가 더 잘 보이는 색깔 정하기
@@ -104,4 +121,4 @@ function Pallete({ colorList }: PalleteProps) {
     );
 }
 
-export default Pallete;
+export default Palette;

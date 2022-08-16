@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
-import PalleteSlider from '../../components/PalleteSlider';
+import PaletteSlider from '../../components/PaletteSlider';
 import dataList from '../../constants/dataList';
 import { modalState, colorState } from '../../states/index';
 import { useRecoilState } from 'recoil';
 import ColorModal from '../../components/ColorModal';
 import { useEffect } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
+import PaletteWheelEvent from '../../utils/PaletteWheelEvent';
 
 //원래 높이는 h-[calc(100vh-5vw-2.5rem)] 이거였음.
 
@@ -65,23 +66,10 @@ function Place() {
         const placeWrapper = document.querySelector('#place-wrapper') as HTMLDivElement;
         placeWrapper?.addEventListener(
             'wheel',
-            function (e) {
-                e.preventDefault();
-
-                const paletteWrapper = document.querySelector('#palette-wrapper') as HTMLElement;
-
-                //스크롤을 아래로 내리면 팔레트가 올라오고, 위로 올리면 팔레트가 내려간다.
-                if (e.deltaY > 0) {
-                    paletteWrapper?.classList.replace('top-[calc(100vh)]', 'lg:top-[calc(2.5rem)]');
-                    paletteWrapper?.classList.add('top-0');
-                } else {
-                    paletteWrapper?.classList.replace('lg:top-[calc(2.5rem)]', 'top-[calc(100vh)]');
-                    paletteWrapper?.classList.remove('top-0');
-                }
-            },
+            PaletteWheelEvent,
             { passive: false },
         );
-    });
+    }, []);
 
     if (!data) {
         return null;
@@ -94,7 +82,7 @@ function Place() {
                 <Introduce placename={place?.toString()} />
             </section>
             <section className="w-full h-[100vh] h-[calc(100vh-5vw-2.5rem)] absolute top-[calc(100vh)] bg-white flex items-center justify-center transition-all duration-1000" id="palette-wrapper">
-                <PalleteSlider colorList3={data.colorList3} colorList4={data.colorList4} colorList5={data.colorList5}></PalleteSlider>
+                <PaletteSlider colorList3={data.colorList3} colorList4={data.colorList4} colorList5={data.colorList5}></PaletteSlider>
             </section>
         </div>
     );
