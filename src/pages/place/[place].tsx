@@ -50,6 +50,7 @@ function Place() {
     const { place } = router.query;
     const [modal, setModal] = useRecoilState(modalState);
     const [color, setColor] = useRecoilState(colorState);
+    const data = dataList.find(elem => elem.place === place?.toString());
 
     useEffect(() => {
         function introFadeIn() {
@@ -82,15 +83,6 @@ function Place() {
         );
     });
 
-    // dataList 배열에서 이름 검사하는 함수
-    const isPlace = (element: DataType) => {
-        return element.place === place?.toString();
-    };
-
-    // dataList에서 이름이 같은 element를 data에 할당
-    const data: DataType | undefined = dataList.find(isPlace);
-
-    //undefined, null 등을 체크
     if (!data) {
         return null;
     }
