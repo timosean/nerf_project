@@ -1,10 +1,15 @@
 import { MdOutlineClose } from 'react-icons/md';
-import { modalState } from '../states/index';
+import { modalState, simState, arrState } from '../states/index';
 import { useRecoilState } from 'recoil';
-import PaletteWheelEvent from '../utils/PaletteWheelEvent';
+import PaletteWheelEvent from '../utils/WheelEvent';
+import { arrProps } from '../utils/interface';
+import { useEffect } from 'react';
 
-function ColorModal({ color }: { color: string }) {
+
+function ColorModal({ color, cArr }: { color: string, cArr: arrProps[] }) {
     const [modal, setModal] = useRecoilState(modalState);
+    const [sim, setSim] = useRecoilState(simState);
+    const [arr, setArr] = useRecoilState(arrState);
 
     //바꾸고 싶으면 대충 이 함수 손봐서 넣으면 됨. 색에 opacity가 들어가야 blur처리가 되나봄.
     function hexToRgb(color: string, opac:string) {
@@ -27,13 +32,14 @@ function ColorModal({ color }: { color: string }) {
         placeWrapper.addEventListener(
             'wheel',
             PaletteWheelEvent,
-            {passive: false}
+            { passive: false }
         );
 
         setTimeout(() => {
             modalBackground.classList.remove('top-0', 'bottom-0');
             modalBackground.classList.add('top-full');
             modal.classList.replace('-translate-y-[50%]', '-translate-y-[1000%]');
+            setSim(0);
         }, 450);
     }
 
@@ -41,7 +47,7 @@ function ColorModal({ color }: { color: string }) {
         <>
             <div
                 className={`opacity-0 top-full transition-opacity backdrop-blur duration-500 absolute left-0 right-0 z-30 px-[6vw] md:px-[3vw]`}
-                style={{backgroundColor: `${hexToRgb(color, '0.7')}`}}
+                style={{backgroundColor: `${hexToRgb(arr[sim].code, '0.7')}`}}
                 onClick={() => {
                     onModalClose();
                     setModal(false);
@@ -51,10 +57,10 @@ function ColorModal({ color }: { color: string }) {
             <div
                 id="modal"
                 className={`opacity-0 -translate-y-[1000%] transition-opacity duration-500 absolute top-[55%] left-[50%] -translate-x-[50%] flex flex-col w-5/6 lg:w-4/6 h-[30rem] backdrop-blur-3xl p-6 rounded-xl z-40`}
-                style={{backgroundColor: `${hexToRgb(color, '0.7')}`}}
+                style={{backgroundColor: `${hexToRgb(arr[sim].code, '0.7')}`}}
             >
-                <h1 className="text-3xl lg:text-5xl font-bold mb-6 text-white">{color}</h1>
-                <p className="overflow-auto">${hexToRgb(color, '0.7')}</p>
+                <h1 className="text-3xl lg:text-5xl font-bold mb-6 text-white">{arr[sim].code}</h1>
+                <p className="overflow-auto">{arr[sim].text}</p>
             </div>
         </>
     );

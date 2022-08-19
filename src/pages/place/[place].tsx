@@ -1,23 +1,14 @@
 import { useRouter } from 'next/router';
 import PaletteSlider from '../../components/PaletteSlider';
 import dataList from '../../constants/dataList';
-import { modalState, colorState } from '../../states/index';
+import { modalState, colorState, simState, arrState } from '../../states/index';
 import { useRecoilState } from 'recoil';
 import ColorModal from '../../components/ColorModal';
 import { useEffect } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
-import PaletteWheelEvent from '../../utils/PaletteWheelEvent';
+import PaletteWheelEvent from '../../utils/WheelEvent';
 
 //원래 높이는 h-[calc(100vh-5vw-2.5rem)] 이거였음.
-
-interface DataType {
-    name: string;
-    place: string;
-    colorList3: string[];
-    colorList4: string[];
-    colorList5: string[];
-}
-
 function ColorSample({ placename }: { placename?: string }) {
     const placeColorData = dataList.find(elem => elem.place == placename)?.colorList3;
     return (
@@ -51,6 +42,8 @@ function Place() {
     const { place } = router.query;
     const [modal, setModal] = useRecoilState(modalState);
     const [color, setColor] = useRecoilState(colorState);
+    const [sim, setSim] = useRecoilState(simState);
+    const [arr, setArr] = useRecoilState(arrState);
     const data = dataList.find(elem => elem.place === place?.toString());
 
     useEffect(() => {
@@ -60,8 +53,9 @@ function Place() {
         }
 
         introFadeIn();
-    }, []);
+    }, [data]);
 
+    //deps에 data넣으니까 잘된당 ㅎㅎ - 위에꺼도 마찬가징
     useEffect(() => {
         const placeWrapper = document.querySelector('#place-wrapper') as HTMLDivElement;
         placeWrapper?.addEventListener(
@@ -69,7 +63,7 @@ function Place() {
             PaletteWheelEvent,
             { passive: false },
         );
-    }, []);
+    }, [data]);
 
     if (!data) {
         return null;
@@ -77,7 +71,7 @@ function Place() {
 
     return (
         <div className="flex flex-col justify-center items-center" id="place-wrapper">
-            <ColorModal color={color} />
+            <ColorModal color={color} cArr={arr}/>
             <section className="w-full h-full md:h-[calc(100vh-5vw-2.5rem)] opacity-0 duration-[2400ms]" id="intro-section">
                 <Introduce placename={place?.toString()} />
             </section>
