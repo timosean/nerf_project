@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { colorState, modalState } from '../states/index';
+import { colorState, modalState, simState, arrState } from '../states/index';
+import PaletteWheelEvent from '../utils/WheelEvent';
+import colorTextList from '../constants/colorTextList';
+import similarColorList from '../constants/similarColorList';
+import { PaletteProps, arrProps } from '../utils/interface';
 
-// 컬러코드가 담겨있는 배열 ex) colorList3, colorList4, colorList5
-interface PalleteProps {
-    colorList: string[];
-}
 
-function Pallete({ colorList }: PalleteProps) {
+function Palette({ colorList }: PaletteProps) {
+    const [modal, setModal] = useRecoilState(modalState);
+    const [color, setColor] = useRecoilState(colorState);
+    const [sim, setSim] = useRecoilState(simState);
+    const [arr, setArr] = useRecoilState(arrState);
+    var similarColors: string[] | undefined = [];
+
     const WHITE = 'FFFFFF';
     const BLACK = '000000';
 
-    //모달 창 Open에 대한 효과 주기
+    //이러면 안되는데 color변할때마다 찾으면 없는 색깔나오면 에러남.....
+    useEffect(() => {
+        similarColors = similarColorList.find(elem => elem.code == color)?.similars;
+    }, [])
+
     function onModalOpen() {
+        var simCnt = 0;
         const modalBackground = document.querySelector('#modal-background') as HTMLDivElement;
         const modal = document.querySelector('#modal') as HTMLDivElement;
 
@@ -22,6 +33,50 @@ function Pallete({ colorList }: PalleteProps) {
 
         modal.classList.replace('opacity-0', 'opacity-100');
         modal.classList.replace('-translate-y-[1000%]', '-translate-y-[50%]');
+
+        //2022-08-16 추가 분
+        const placeWrapper = document.querySelector('#place-wrapper') as HTMLDivElement;
+        placeWrapper.removeEventListener('wheel', PaletteWheelEvent);
+        
+        //modal close에 removeEventListener 해줘야 하나 했는데... 어차피 모달 내려가니까 굳이 리무브 안해도 되지않을까?
+        modal.addEventListener(
+            'wheel',
+            function (e) {
+                e.preventDefault();
+                
+                if(e.deltaY > 0 && simCnt < 4) {
+                    simCnt++;
+                    setSim(simCnt);
+                } else if(e.deltaY < 0 && simCnt > 0) {
+                    simCnt--;
+                    setSim(simCnt);
+                }
+            },
+            { passive: false }
+        );
+    }
+
+    function makeColorList(color: string) {
+        const data = similarColorList.find(elem => elem.code == color);
+        var result: arrProps[] = [];
+        var similars: string[];
+        if(!data) {
+            similars = ['#708090', '#B46648', '#DFD2A9', '#CCB67D', '#D1B67B'];
+        } else {
+            similars = data.similars;
+        }
+        
+        for(var i in similars) {
+            const textData = colorTextList.find(elem => elem.code == similars[i]);
+            if(!textData) {
+                result.push({code: similars[i], text: 'not in data'});
+            } else {
+                result.push({code: textData.code, text: textData.text});
+            }
+        }
+        console.log(result);
+
+        setArr(result);
     }
 
     //배경색에 따라서 흰색,검은색 중 텍스트가 더 잘 보이는 색깔 정하기
@@ -44,9 +99,6 @@ function Pallete({ colorList }: PalleteProps) {
     // colorList.length에 따라서 3x3, 4x4, 5x5 팔레트 중 무엇을 보여줄 지 결정
     const cnt: number = Math.sqrt(colorList.length);
 
-    const [modal, setModal] = useRecoilState(modalState);
-    const [color, setColor] = useRecoilState(colorState);
-
     return cnt == 3 ? (
         <div className="grid grid-cols-3 gap-2 sm:gap-4 flex justify-items-center w-[17rem] sm:w-[33rem] md:w-[38rem] mx-[auto]">
             {colorList.map((color, idx) => (
@@ -55,8 +107,9 @@ function Pallete({ colorList }: PalleteProps) {
                     style={{ backgroundColor: `${color}` }}
                     onMouseOver={() => setIsHover(idx)}
                     onMouseOut={() => setIsHover(100)}
-                    key={`${color}.${idx}`}
+                    key={`3_${color}.${idx}`}
                     onClick={() => {
+                        makeColorList(color);
                         setModal(true);
                         setColor(color);
                         onModalOpen();
@@ -74,8 +127,9 @@ function Pallete({ colorList }: PalleteProps) {
                     style={{ backgroundColor: `${color}` }}
                     onMouseOver={() => setIsHover(idx)}
                     onMouseOut={() => setIsHover(100)}
-                    key={`${color}.${idx}`}
+                    key={`4_${color}.${idx}`}
                     onClick={() => {
+                        makeColorList(color);
                         setModal(true);
                         setColor(color);
                         onModalOpen();
@@ -97,11 +151,11 @@ function Pallete({ colorList }: PalleteProps) {
                     style={{ backgroundColor: `${color}` }}
                     onMouseOver={() => setIsHover(idx)}
                     onMouseOut={() => setIsHover(100)}
-                    key={`${color}.${idx}`}
+                    key={`5_${color}.${idx}`}
                 ></div>
             ))}
         </div>
     );
 }
 
-export default Pallete;
+export default Palette;
