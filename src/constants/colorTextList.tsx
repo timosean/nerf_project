@@ -228,6 +228,11 @@ const colorTextList = [
         "index": 46,
         "code": "#A3A45F",
         "text": "Asian Paints Mix Fruit Green / 9382"
+    },
+    {
+        "index": 47,
+        "code": "#546B27",
+        "text": "앙기모취취취취"
     }
     // {
     //     "index": 47,
