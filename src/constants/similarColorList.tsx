@@ -28,6 +28,10 @@ const similarColorList = [
         "similars": ["#735A45", "#2F4F4F", "#708090", "#778899", "#A3A45F"]
     },
     {
+        "code": "#546B27",
+        "similars": ["#546B27", "#2F4F4F", "#708090", "#778899", "#A3A45F"]
+    },
+    {
         "code": "#BDCBDC",
         "similars": ["#BDCBDC", "#2F4F4F", "#708090", "#778899", "#A3A45F"]
     },
