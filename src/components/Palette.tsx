@@ -46,9 +46,11 @@ function Palette({ colorList }: PaletteProps) {
 
                 if (e.deltaY > 0 && simCnt < 4) {
                     simCnt++;
+                    modal.scrollTop = simCnt * 480;
                     setSim(simCnt);
                 } else if (e.deltaY < 0 && simCnt > 0) {
                     simCnt--;
+                    modal.scrollTop = simCnt * 480;
                     setSim(simCnt);
                 }
             },

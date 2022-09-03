@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import PaletteWheelEvent from '../utils/WheelEvent';
 import { arrProps } from '../utils/interface';
 
+//modal 본체의 height는 30rem
 function ColorModal({ color, cArr }: { color: string; cArr: arrProps[] }) {
     const [modal, setModal] = useRecoilState(modalState);
     const [sim, setSim] = useRecoilState(simState);
@@ -49,11 +50,14 @@ function ColorModal({ color, cArr }: { color: string; cArr: arrProps[] }) {
             ></div>
             <div
                 id="modal"
-                className={`opacity-0 -translate-y-[1000%] transition-opacity duration-500 absolute top-[55%] left-[50%] -translate-x-[50%] flex flex-col w-5/6 lg:w-4/6 h-[30rem] backdrop-blur-3xl p-6 rounded-xl z-40`}
-                style={{ backgroundColor: `${hexToRgb(arr[sim].code, '0.7')}` }}
+                className={`opacity-0 -translate-y-[1000%] transition-opacity duration-500 absolute top-[55%] left-[50%] -translate-x-[50%] flex flex-col w-5/6 lg:w-4/6 h-[30rem] backdrop-blur-3xl rounded-xl z-40 overflow-auto scroll-smooth`}
             >
-                <h1 className="text-3xl lg:text-5xl font-bold mb-6 text-white">{arr[sim].code}</h1>
-                <p className="overflow-auto">{arr[sim].text}</p>
+                {arr.map(elem => (
+                    <div className="w-[100%] min-h-[30rem] p-6" style={{ backgroundColor: `${hexToRgb(elem.code, '0.7')}` }}>
+                        <h1 className="text-3xl lg:text-5xl font-bold mb-6 text-white">{elem.code}</h1>
+                        <p className="overflow-auto">{elem.text}</p>
+                    </div>
+                ))}
             </div>
         </>
     );
