@@ -6,13 +6,13 @@ import colorTextList from '../constants/colorTextList';
 import similarColorList from '../constants/similarColorList';
 import { PaletteProps, arrProps } from '../utils/interface';
 
-
 function Palette({ colorList }: PaletteProps) {
     const [modal, setModal] = useRecoilState(modalState);
     const [color, setColor] = useRecoilState(colorState);
     const [sim, setSim] = useRecoilState(simState);
     const [arr, setArr] = useRecoilState(arrState);
-    var similarColors: string[] | undefined = [];
+
+    let similarColors: string[] | undefined = [];
 
     const WHITE = 'FFFFFF';
     const BLACK = '000000';
@@ -20,7 +20,7 @@ function Palette({ colorList }: PaletteProps) {
     //이러면 안되는데 color변할때마다 찾으면 없는 색깔나오면 에러남.....
     useEffect(() => {
         similarColors = similarColorList.find(elem => elem.code == color)?.similars;
-    }, [])
+    }, []);
 
     function onModalOpen() {
         var simCnt = 0;
@@ -37,22 +37,22 @@ function Palette({ colorList }: PaletteProps) {
         //2022-08-16 추가 분
         const placeWrapper = document.querySelector('#place-wrapper') as HTMLDivElement;
         placeWrapper.removeEventListener('wheel', PaletteWheelEvent);
-        
+
         //modal close에 removeEventListener 해줘야 하나 했는데... 어차피 모달 내려가니까 굳이 리무브 안해도 되지않을까?
         modal.addEventListener(
             'wheel',
             function (e) {
                 e.preventDefault();
-                
-                if(e.deltaY > 0 && simCnt < 4) {
+
+                if (e.deltaY > 0 && simCnt < 4) {
                     simCnt++;
                     setSim(simCnt);
-                } else if(e.deltaY < 0 && simCnt > 0) {
+                } else if (e.deltaY < 0 && simCnt > 0) {
                     simCnt--;
                     setSim(simCnt);
                 }
             },
-            { passive: false }
+            { passive: false },
         );
     }
 
@@ -60,18 +60,18 @@ function Palette({ colorList }: PaletteProps) {
         const data = similarColorList.find(elem => elem.code == color);
         var result: arrProps[] = [];
         var similars: string[];
-        if(!data) {
+        if (!data) {
             similars = ['#708090', '#B46648', '#DFD2A9', '#CCB67D', '#D1B67B'];
         } else {
             similars = data.similars;
         }
-        
-        for(var i in similars) {
+
+        for (var i in similars) {
             const textData = colorTextList.find(elem => elem.code == similars[i]);
-            if(!textData) {
-                result.push({code: similars[i], text: 'not in data'});
+            if (!textData) {
+                result.push({ code: similars[i], text: 'not in data' });
             } else {
-                result.push({code: textData.code, text: textData.text});
+                result.push({ code: textData.code, text: textData.text });
             }
         }
         console.log(result);
@@ -115,7 +115,13 @@ function Palette({ colorList }: PaletteProps) {
                         onModalOpen();
                     }}
                 >
-                    <span className={`transition-all duration-700 ease-out text-[0.875rem] md:text-[1.125rem] lg:text-[1.25rem] font-normal leading-none text-white ${isHover == idx ? 'opacity-100' : 'opacity-0'}`}>{color}</span>
+                    <span
+                        className={`transition-all duration-700 ease-out text-[0.875rem] md:text-[1.125rem] lg:text-[1.25rem] font-normal leading-none text-white ${
+                            isHover == idx ? 'opacity-100' : 'opacity-0'
+                        }`}
+                    >
+                        {color}
+                    </span>
                 </div>
             ))}
         </div>
@@ -136,7 +142,9 @@ function Palette({ colorList }: PaletteProps) {
                     }}
                 >
                     <span
-                        className={`transition-all duration-700 ease-out text-[0.5rem] md:text-[1.125rem] lg:text-[1.125rem] font-normal leading-none text-${colorDetermine(color)} ${isHover == idx ? 'opacity-100' : 'opacity-0'}`}
+                        className={`transition-all duration-700 ease-out text-[0.5rem] md:text-[1.125rem] lg:text-[1.125rem] font-normal leading-none text-${colorDetermine(color)} ${
+                            isHover == idx ? 'opacity-100' : 'opacity-0'
+                        }`}
                     >
                         {color}
                     </span>
