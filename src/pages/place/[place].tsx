@@ -58,11 +58,7 @@ function Place() {
     //deps에 data넣으니까 잘된당 ㅎㅎ - 위에꺼도 마찬가징
     useEffect(() => {
         const placeWrapper = document.querySelector('#place-wrapper') as HTMLDivElement;
-        placeWrapper?.addEventListener(
-            'wheel',
-            PaletteWheelEvent,
-            { passive: false },
-        );
+        placeWrapper?.addEventListener('wheel', PaletteWheelEvent, { passive: false });
     }, [data]);
 
     if (!data) {
@@ -71,7 +67,7 @@ function Place() {
 
     return (
         <div className="flex flex-col justify-center items-center" id="place-wrapper">
-            <ColorModal color={color} cArr={arr}/>
+            <ColorModal color={color} cArr={arr} />
             <section className="w-full h-full md:h-[calc(100vh-5vw-2.5rem)] opacity-0 duration-[2400ms]" id="intro-section">
                 <Introduce placename={place?.toString()} />
             </section>

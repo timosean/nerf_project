@@ -40,7 +40,7 @@ function ColorModal({ color, cArr }: { color: string; cArr: arrProps[] }) {
     return (
         <>
             <div
-                className={`opacity-0 top-full transition-opacity backdrop-blur duration-500 absolute left-0 right-0 z-30 px-[6vw] md:px-[3vw]`}
+                className={`opacity-0 top-full transition-opacity duration-[800ms] absolute left-0 right-0 z-30 px-[6vw] md:px-[3vw]`}
                 style={{ backgroundColor: `${hexToRgb(arr[sim].code, '0.7')}` }}
                 onClick={() => {
                     onModalClose();
@@ -50,7 +50,7 @@ function ColorModal({ color, cArr }: { color: string; cArr: arrProps[] }) {
             ></div>
             <div
                 id="modal"
-                className={`opacity-0 -translate-y-[1000%] transition-opacity duration-500 absolute top-[55%] left-[50%] -translate-x-[50%] flex flex-col w-5/6 lg:w-4/6 h-[30rem] backdrop-blur-3xl rounded-xl z-40 overflow-auto scroll-smooth`}
+                className={`opacity-0 -translate-y-[1000%] transition-opacity duration-[800ms] absolute top-[55%] left-[50%] -translate-x-[50%] flex flex-col w-5/6 lg:w-4/6 h-[30rem] backdrop-blur-3xl rounded-xl z-40 overflow-auto scroll-smooth`}
             >
                 {arr.map(elem => (
                     <div className="w-[100%] min-h-[30rem] p-6" style={{ backgroundColor: `${hexToRgb(elem.code, '0.7')}` }}>
