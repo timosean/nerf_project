@@ -2,12 +2,14 @@ import { modalState, simState, arrState } from '../states/index';
 import { useRecoilState } from 'recoil';
 import PaletteWheelEvent from '../utils/WheelEvent';
 import { arrProps } from '../utils/interface';
+import { BsChevronDown } from 'react-icons/bs';
 
 //modal 본체의 height는 30rem
 function ColorModal({ color, cArr }: { color: string; cArr: arrProps[] }) {
     const [modal, setModal] = useRecoilState(modalState);
     const [sim, setSim] = useRecoilState(simState);
     const [arr, setArr] = useRecoilState(arrState);
+    const simMax = 6;
 
     //바꾸고 싶으면 대충 이 함수 손봐서 넣으면 됨. 색에 opacity가 들어가야 blur처리가 되나봄.
     function hexToRgb(color: string, opac: string) {
@@ -30,6 +32,8 @@ function ColorModal({ color, cArr }: { color: string; cArr: arrProps[] }) {
         placeWrapper.addEventListener('wheel', PaletteWheelEvent, { passive: false });
 
         setTimeout(() => {
+            //여기에 넣는게 제일 깔끔할것 같긴한데 실행이 안됨. 디버그 찍어서 실행하면 되는데, 그냥 넘기면 안됨.
+            //modal.scrollTop = 0;
             modalBackground.classList.remove('top-0', 'bottom-0');
             modalBackground.classList.add('top-full');
             modal.classList.replace('-translate-y-[50%]', '-translate-y-[1000%]');
@@ -53,9 +57,12 @@ function ColorModal({ color, cArr }: { color: string; cArr: arrProps[] }) {
                 className={`opacity-0 -translate-y-[1000%] transition-opacity duration-[800ms] absolute top-[55%] left-[50%] -translate-x-[50%] flex flex-col w-5/6 lg:w-4/6 h-[30rem] backdrop-blur-3xl rounded-xl z-40 overflow-auto scroll-smooth`}
             >
                 {arr.map(elem => (
-                    <div className="w-[100%] min-h-[30rem] p-6" style={{ backgroundColor: `${hexToRgb(elem.code, '0.7')}` }}>
+                    <div className="relative w-[100%] min-h-[30rem] p-6" style={{ backgroundColor: `${hexToRgb(elem.code, '0.7')}` }}>
                         <h1 className="text-3xl lg:text-5xl font-bold mb-6 text-white">{elem.code}</h1>
                         <p className="overflow-auto">{elem.text}</p>
+                        <div className={`${sim == simMax ? 'opacity-0' : 'opacity-100'} flex items-center justify-center mt-[35vh] animate-bounce`}>
+                            <BsChevronDown size={20} />
+                        </div>
                     </div>
                 ))}
             </div>
