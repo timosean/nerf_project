@@ -31,6 +31,8 @@ function Palette({ colorList }: PaletteProps) {
         modalBackground.classList.remove('top-full');
         modalBackground.classList.add('top-0', 'bottom-0');
 
+        //close에 넣었더니 잘 안되서 여기 넣음.
+        modal.scrollTop = 0;
         modal.classList.replace('opacity-0', 'opacity-100');
         modal.classList.replace('-translate-y-[1000%]', '-translate-y-[50%]');
 
@@ -44,7 +46,7 @@ function Palette({ colorList }: PaletteProps) {
             function (e) {
                 e.preventDefault();
 
-                if (e.deltaY > 0 && simCnt < 4) {
+                if (e.deltaY > 0 && simCnt < 6) {
                     simCnt++;
                     modal.scrollTop = simCnt * 480;
                     setSim(simCnt);

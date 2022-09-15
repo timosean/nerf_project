@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import Palette from './Palette';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { BsChevronCompactRight, BsChevronCompactLeft } from 'react-icons/bs';
 
 // 캐러셀 커스텀 화살표 props
 interface CustomArrowsProps {
@@ -18,12 +19,23 @@ interface SliderProps {
     colorList5: string[];
 }
 
-//왜 md:!w-[calc((100% - 38rem)/2)]는 안먹는 걸까
 function CustomNextArrows({ className, style, onClick }: CustomArrowsProps) {
-    return <div className={`${className} white-arrow`} style={{ ...style, right: '0px' }} onClick={onClick} />;
+    return (
+        <div className={`${className} white-arrow`} style={{ ...style, right: '0px' }} onClick={onClick}>
+            <div className="flex items-center absolute left-0 mt-[5.4rem] sm:mt-[13.3rem] md:mt-[15.5rem]">
+                <BsChevronCompactRight size={60} />
+            </div>
+        </div>
+    );
 }
 function CustomPrevArrows({ className, style, onClick }: CustomArrowsProps) {
-    return <div className={`${className} white-arrow`} style={{ ...style, left: '0px' }} onClick={onClick} />;
+    return (
+        <div className={`${className} white-arrow`} style={{ ...style, left: '0px' }} onClick={onClick}>
+            <div className="flex items-center absolute right-0 mt-[5.4rem] sm:mt-[13.3rem] md:mt-[15.5rem]">
+                <BsChevronCompactLeft size={60} />
+            </div>
+        </div>
+    );
 }
 
 // 캐러셀
