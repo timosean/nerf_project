@@ -57,11 +57,12 @@ function ColorModal({ color, cArr }: { color: string; cArr: arrProps[] }) {
                 className={`opacity-0 -translate-y-[1000%] transition-opacity duration-[800ms] absolute top-[55%] left-[50%] -translate-x-[50%] flex flex-col w-5/6 lg:w-4/6 h-[30rem] backdrop-blur-3xl rounded-xl z-40 overflow-auto scroll-smooth`}
             >
                 {arr.map(elem => (
-                    <div className="relative w-[100%] min-h-[30rem] p-6" style={{ backgroundColor: `${hexToRgb(elem.code, '0.7')}` }}>
+                    <div className="relative w-[100%] min-h-[30rem] p-6 font-lexend" style={{ backgroundColor: `${hexToRgb(elem.code, '0.7')}` }}>
                         <h1 className="text-3xl lg:text-5xl font-bold mb-6 text-white">{elem.code}</h1>
                         <p className="overflow-auto">{elem.text}</p>
-                        <div className={`${sim == simMax ? 'opacity-0' : 'opacity-100'} flex items-center justify-center mt-[35vh] animate-bounce`}>
-                            <BsChevronDown size={20} />
+                        <p className="absolute left-[50%] -translate-x-2/4 top-[50%] -translate-y-2/4 text-7xl text-white font-lexend">brick</p>
+                        <div className={`${sim == simMax ? 'opacity-0' : 'opacity-100'} absolute bottom-3 left-[50%] -translate-x-2/4 flex items-center justify-center mt-[35vh] animate-bounce`}>
+                            <BsChevronDown size={20} fill="white" />
                         </div>
                     </div>
                 ))}
